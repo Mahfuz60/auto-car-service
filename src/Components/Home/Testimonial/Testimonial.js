@@ -35,7 +35,7 @@ const Testimonial = () => {
   const [review, setReview] = useState([]);
 
   // data load to database
-  fetch("http://localhost:5000/review")
+  fetch("https://whispering-caverns-51592.herokuapp.com/review")
     .then((response) => response.json())
     .then((review) => {
       

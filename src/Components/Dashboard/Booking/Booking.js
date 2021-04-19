@@ -31,7 +31,7 @@ const Booking = () => {
     // handleSubmit
     const handleSubmit = (event) => {
      
-            fetch('http://localhost:5000/booking', {
+            fetch('https://whispering-caverns-51592.herokuapp.com/booking', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

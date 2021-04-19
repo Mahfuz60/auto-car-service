@@ -7,7 +7,7 @@ const OrderList = () => {
     const [loggedInUser, setLoggedInUser] = useContext(userContext);
 
     useEffect(() => {
-        fetch('http://localhost:5000/review')
+        fetch('https://whispering-caverns-51592.herokuapp.com/review')
             .then(response => response.json())
             .then(data => {
                 console.log(data);

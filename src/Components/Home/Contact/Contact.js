@@ -22,7 +22,7 @@ const Contact = () => {
 
     // Form Submit
     const handleSubmit = (event) => {
-        fetch('http://localhost:5000/formData',{
+        fetch('https://whispering-caverns-51592.herokuapp.com/formData',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

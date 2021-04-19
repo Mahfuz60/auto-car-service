@@ -26,7 +26,7 @@ const Review = () => {
     const handleReviewSubmit = (event) => {
 
         // database ta data load
-        fetch('http://localhost:5000/reviewForm',{
+        fetch('https://whispering-caverns-51592.herokuapp.com/reviewForm',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

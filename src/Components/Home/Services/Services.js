@@ -39,7 +39,7 @@ const Services = () => {
     const [service, setService] = useState([]);
 
   // data load to database
-  fetch("http://localhost:5000/service")
+  fetch("https://whispering-caverns-51592.herokuapp.com/service")
     .then((response) => response.json())
     .then((service) => {
       
