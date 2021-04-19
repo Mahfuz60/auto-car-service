@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 
-const DashboardCard = ({process,data}) => {
+const DashboardCard = ({ data , process}) => {
     console.log(data)
     return (
+
         <div className=" col-md-3">
             <div className={` text-center me-3 p-3 ${data.backgroundColor} text-white`}>
                 <div className="d-flex justify-content-center ">
@@ -13,7 +15,7 @@ const DashboardCard = ({process,data}) => {
                 </div>
             </div>
         </div>
-        
+
     );
 };
 

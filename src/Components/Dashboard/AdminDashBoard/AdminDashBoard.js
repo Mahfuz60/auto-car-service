@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faGripHorizontal, faPlus,  faShoppingBag , faUser } from '@fortawesome/free-solid-svg-icons';
 
-const AdminDashBoard = () => {
+
+const AdminDashboard = () => {
     const [info , setInfo] = useState({});
 
     // handle Change event
@@ -74,7 +75,7 @@ const AdminDashBoard = () => {
                         <h4 style={{}} className="m-4">Admin</h4>
                     </div>
                     <div className="col-md-6 ">
-                        <h4 style={{}} className="text-warning m-4">{info.name }</h4>
+                        <h4 style={{}} className="text-brand m-4">{info.name }</h4>
                     </div>
                 </div>
                 <form onSubmit={handleSubmit} action="" method="POST" style={{ width: '75%', margin: '0 auto' }} className="bg-light m-5 p-5">
@@ -91,4 +92,4 @@ const AdminDashBoard = () => {
     );
 };
 
-export default AdminDashBoard;
+export default AdminDashboard;

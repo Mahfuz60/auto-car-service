@@ -1,21 +1,22 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import './sidebar.css';
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './Sidebar.css'
+import { a, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faGripHorizontal,faSignOutAlt, faCommentAlt, faCartPlus, faShoppingBag, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faGripHorizontal, faCommentAlt, faCartPlus, faShoppingBag, faUser } from '@fortawesome/free-solid-svg-icons';
 
 
 const Sidebar = () => {
     return (
-        <div className="sidebar d-flex flex-column justify-content-between col-md-2 py-5 px-4" style={{height:"100vh"}}>
-            <ul className="list-unstyled">
-            <li>
+        <div className="sidebar d-flex flex-column justify-content-between py-5 px-5" style={{ height: '100vh' }}>
+            <ul className="">
+                <li>
                     <Link to="/home" className="text-white">
                         <FontAwesomeIcon icon={faHome} /> <span>Home</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/dashboard" className="text-white">
+                    <Link to="/customerDashboard" className="text-white">
                         <FontAwesomeIcon icon={faGripHorizontal} /> <span>Dashboard</span>
                     </Link>
                 </li>
@@ -40,9 +41,6 @@ const Sidebar = () => {
                     </Link>
                 </li>
             </ul>
-            <div>
-                <Link to="/" className="text-white"><FontAwesomeIcon icon={faSignOutAlt} /> <span>Logout</span></Link>
-            </div>
         </div>
     );
 };

@@ -1,8 +1,9 @@
 import React from 'react';
-import "./FeatureService.css";
+import "./CompleteService.css";
 import pic4 from "../../../images/pic4.png";
 
-const FeatureService = () => {
+
+const CompleteServices = () => {
     return (
 
         <section className="mt-5 align-items-center ">
@@ -29,4 +30,4 @@ const FeatureService = () => {
     );
 };
 
-export default FeatureService;
+export default CompleteServices;

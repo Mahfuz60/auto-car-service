@@ -1,48 +1,56 @@
+import './login.css';
 import React, { useContext } from 'react';
-import { useHistory, useLocation } from 'react-router';
+import { userContext } from '../../../App';
+import Navbar from '../../Share/Navbar/Navbar';
 import firebase from "firebase/app";
 import "firebase/auth";
-import firebaseConfig from './Firebase-config';
-import Navbar from '../../Navbar/Navbar';
-import { UserContext } from '../../../App';
+import firebaseConfig from './firebase.config';
+import { useHistory, useLocation } from 'react-router';
 
-
-
-if (firebase.apps.length === 0) {
-  firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
 }
-const Login =()=>{
-  const {loggedInUser, setLoggedInUser} = useContext(UserContext);
-  const history = useHistory();
-  const location = useLocation();
-  const { from } = location.state || { from: { pathname: "/" } };
 
 
-  const handleGoogleSignIn = () => {
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(function (result) {
-      const { displayName, email } = result.user;
-      const signedInUser = { name: displayName, email }
-      setLoggedInUser(signedInUser);
-      storeAuthToken();
-    }).catch(function (error) {
-      const errorMessage = error.message;
-      console.log(errorMessage);
-    });
-  }
 
-  const storeAuthToken = () => {
-    firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
-      .then(function (idToken) {
-        sessionStorage.setItem('token', idToken);
-        history.replace(from);
+const Login = () => {
+
+     const [loggedInUser, setLoggedInUser] = useContext(userContext);
+    const history = useHistory();
+    const location = useLocation();
+    const { from } = location.state || { from: { pathname: "/" } };
+  
+    if (firebase.apps.length === 0) {
+      firebase.initializeApp(firebaseConfig);
+    }
+  
+    const handleGoogleSignIn = () => {
+      var provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().signInWithPopup(provider).then(function (result) {
+        const { displayName, email } = result.user;
+        const signedInUser = { name: displayName, email }
+        setLoggedInUser(signedInUser);
+        storeAuthToken();
       }).catch(function (error) {
-        // Handle error
+        const errorMessage = error.message;
+        console.log(errorMessage);
       });
-  }
+    }
+  
+    const storeAuthToken = () => {
+      firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
+        .then(function (idToken) {
+          sessionStorage.setItem('token', idToken);
+          history.replace(from);
+        }).catch(function (error) {
+          // Handle error
+        });
+    }
 
-  return (
-    <div className="login-page container">
+    return (
+        <div>
+           
+            <div className="login-page container">
       <Navbar></Navbar>
       <div className="row align-items-center" style={{ height: "100vh" }}>
         <div className="col-md-6 shadow p-5">
@@ -64,7 +72,8 @@ const Login =()=>{
         
       </div>
     </div>
-  );
+        </div>
+    );
 };
 
 export default Login;

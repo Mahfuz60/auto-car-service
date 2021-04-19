@@ -1,0 +1,10 @@
+#auth-btn{
+    width:300px;
+    padding:7px;
+    border-radius: 10px;
+    background:transparent;
+}
+#auth-btn img{
+    position:absolute;
+    left:618px;
+}

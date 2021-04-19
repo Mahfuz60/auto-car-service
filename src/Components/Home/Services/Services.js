@@ -1,40 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import service1 from '../../../images/service1.png';
 import service2 from '../../../images/service2.png';
 import service3 from '../../../images/service3.png';
 import service4 from '../../../images/service4.png';
-import ServicesDetails from '../ServicesDetails/ServicesDetails';
+import ServicesCard from '../ServicesCard/ServicesCard';
 
-
-const servicesData=[
+const services= [
     {
-        name:'AIR CONDITIONING',
+        id: 1,
+        name: 'AIR CONDITIONING',
         pic:service1,
-        price:'300',
-        description:'We provide top-notch service for import and domestic car repairs. Servicing Brakes, Tune Ups, Engine Repairs. '
+        price: '499',
+        description: 'We provide top-notch service for import and domestic car repairs. Servicing Brakes, Tune Ups, Engine Repairs. '
     },
     {
-        name:'ELECTRICAL SYSTEM',
+        id: 2,
+        name: 'ELECTRICAL SYSTEM',
         pic:service2,
-        price:'200',
-        description:'We provide top-notch service for import and domestic car repairs. Servicing Brakes, Tune Ups, Engine Repairs. '
-    },
-    {
-        name:'BRAKE REPAIR',
+        price: '220',
+        description: 'We provide top-notch service for import and domestic car repairs. Servicing Brakes, Tune Ups, Engine Rep'
+    }, {
+        id: 3,
+        name: 'BRAKE REPAIR',
         pic:service3,
-        price:'500',
-        description:'We provide top-notch service for import and domestic car repairs. Servicing Brakes, Tune Ups, Engine Repairs.'
+        price: '355',
+        description: 'We provide top-notch service for import and domestic car repairs. Servicing Brakes, Tune Ups, Engine Rep'
     },
     {
-        name:'AUTOMOTIVE FILTERS',
+        id: 4,
+        name: 'AUTOMOTIVE FILTERS',
         pic:service4,
-        price:'150',
-        description:'We provide top-notch service for import and domestic car repairs. Servicing Brakes, Tune Ups, Engine Repairs.'
-    }
+        price: '355',
+        description: 'We provide top-notch service for import and domestic car repairs. Servicing Brakes, Tune Ups, Engine Rep'
+    },
 ]
 
 const Services = () => {
+    const [service, setService] = useState([]);
+
+  // data load to database
+  fetch("http://localhost:5000/service")
+    .then((response) => response.json())
+    .then((service) => {
+      
+      setService(service);
+    });
+
+
     return (
+
         <section className='services-container pt-3 mt-5'>
         <div className='text-center'>
             <h4 style={{color:'#1CC7C1',fontWeight:'700'}}>OUR SERVICES</h4>
@@ -43,13 +57,23 @@ const Services = () => {
         <div className='d-flex justify-content-center'>
         <div   className='row w-75 card-deck px-5 py-3'>
             {
-                servicesData.map(service=><ServicesDetails key={service.key} service={service}></ServicesDetails>)
+                
+                 services.map(service => <ServicesCard key={service.name} service={service} />)
                 
             }
+
+            {
+                service.map(service =><ServicesCard service={service} key={service.name}></ServicesCard>)
+            }
+
+            
         </div>
         </div>
         
     </section>
+
+
+        
     );
 };
 

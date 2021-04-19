@@ -1,68 +1,70 @@
-import "./App.css";
-import React, { createContext, useState } from "react";
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import Home from "./Components/Home/Home/Home";
-import Login from "./Components/Login/Login/Login";
-import PrivateRoute from "./Components/Login/PrivateRoute/PrivateRoute";
-import Booking from "./Components/Dashboard/Booking/Booking";
-import BookingList from "./Components/Dashboard/BookingList/BookingList";
-import AdminDashBoard from "./Components/Dashboard/AdminDashBoard/AdminDashBoard";
-import AddService from "./Components/Dashboard/AddService/AddService";
-import OrderList from "./Components/Dashboard/OrderList/OrderList";
-import Review from "./Components/Dashboard/Review/Review";
-import Dashboard from "./Components/Dashboard/Dashboard/Dashboard";
+
+import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+
+} from "react-router-dom";
+import Home from './Components/Home/Home/Home';
+import Login from './Components/Login/Login/Login';
+import { createContext, useState } from 'react';
+import MainDashboard from './Components/Dashboard/MainDashboard/MainDashboard';
+import Review from './Components/Dashboard/Review/Review';
+import PrivateRoute from './Components/Login/PrivateRoute/PrivateRoute';
+import Booking from './Components/Dashboard/Booking/Booking';
+import BookingList from './Components/Dashboard/BookingList/BookingList';
+import AdminDashboard from './Components/Dashboard/AdminDashboard/AdminDashboard';
+import AddService from './Components/Dashboard/AddService/AddService';
+import NotFound from './Components/NotFoundPage/NotFound';
+import OrderList from './Components/Dashboard/OrderList/OrderList';
 
 
-
-
-export const UserContext = createContext();
+// Context API
+export const userContext = createContext();
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
   return (
-    <UserContext.Provider value={(loggedInUser, setLoggedInUser)}>
+    <userContext.Provider value={[loggedInUser, setLoggedInUser]}>
       <Router>
         <Switch>
-        <Route path="/login">
-            <Login></Login> 
+          <Route path="/login">
+            <Login />
           </Route>
-          <Route path='/home'>
-            <Home></Home>
-
+          <Route exact path="/home">
+            <Home />
           </Route>
-          <Route path='/dashboard'>
-            <Dashboard></Dashboard>
-          </Route>
-        
-          <PrivateRoute path='/addService'>
-            <AddService></AddService>
+          <PrivateRoute path="/customerDashboard">
+            <MainDashboard />
           </PrivateRoute>
-          <PrivateRoute path='/admin'>
-            <AdminDashBoard></AdminDashBoard>
+          <PrivateRoute path="/admin">
+            <AdminDashboard />
           </PrivateRoute>
-          <PrivateRoute path='/orderList'>
-            <OrderList></OrderList>
+          <PrivateRoute path="/addService">
+            <AddService />
           </PrivateRoute>
-         
-          <PrivateRoute path='/booking'>
-            <Booking></Booking>
-          </PrivateRoute> 
-           <PrivateRoute path='/bookingList'>
-            <BookingList></BookingList>
+          <PrivateRoute path="/orderList">
+            <OrderList />
           </PrivateRoute>
-          <PrivateRoute path='/review'>
-            <Review></Review>
+          <PrivateRoute path="/review">
+            <Review />
           </PrivateRoute>
-          
-          
-          
-          
+          <PrivateRoute path="/booking">
+            <Booking />
+          </PrivateRoute>
+          <PrivateRoute path="/bookingList">
+            <BookingList />
+          </PrivateRoute>
           <Route exact path="/">
-            <Home></Home>
+            <Home />
+          </Route>
+          <Route path="*">
+            <NotFound />
           </Route>
         </Switch>
       </Router>
-    </UserContext.Provider>
+    </userContext.Provider>
   );
 }
 

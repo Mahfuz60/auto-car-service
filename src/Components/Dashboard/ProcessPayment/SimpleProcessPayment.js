@@ -1,6 +1,7 @@
 import React from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-const PaymentProcessCard = () => {
+
+const SimpleCardForm = () => {
     const stripe = useStripe();
     const elements = useElements();
 
@@ -9,14 +10,17 @@ const PaymentProcessCard = () => {
         event.preventDefault();
 
         if (!stripe || !elements) {
-            
+            // Stripe.js has not loaded yet. Make sure to disable
+            // form submission until Stripe.js has loaded.
             return;
         }
 
-    
+        // Get a reference to a mounted CardElement. Elements knows how
+        // to find your CardElement because there can only ever be one of
+        // each type of element.
         const cardElement = elements.getElement(CardElement);
 
-        
+        // Use your card Element with other Stripe.js APIs
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
             card: cardElement,
@@ -32,11 +36,11 @@ const PaymentProcessCard = () => {
     return (
         <form onSubmit={handleSubmit}>
             <CardElement />
-            <span className="text-muted " style={{ marginRight: '100px' }}>Your Service Charge Will Be</span> <button onSubmit={handleSubmit}  className="btn btn-warning"type="submit" disabled={!stripe}>
+            <span className="text-muted " style={{ marginRight: '100px' }}>Your Service Charge Will Be</span> <button onSubmit={handleSubmit}  className="btn btn-info"type="submit" disabled={!stripe}>
                 Pay
         </button>
         </form>
     );
 };
 
-export default PaymentProcessCard;
+export default SimpleCardForm;

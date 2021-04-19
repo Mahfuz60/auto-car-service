@@ -1,9 +1,7 @@
-import React, { useContext } from 'react';
-import { UserContext } from '../../../App';
+import React from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 
-const BookingList = () => {
-    const {loggedInUser, setLoggedInUser} = useContext(UserContext);
+const BookingList = ({book}) => {
     return (
         <div className="row">
             <div className="col-md-2">
@@ -15,7 +13,9 @@ const BookingList = () => {
                         <h4 style={{}} className="m-4">Booking List</h4>
                     </div>
                     <div className="col-md-6 ">
-                        <h4 style={{}} className="text-warning m-4">{loggedInUser.displayName}</h4>
+                        <h4 style={{}} className="text-brand m-4">{book.name}</h4>
+                        <h4 style={{}} className="text-brand m-4">{book.email}</h4>
+                        <h4 style={{}} className="text-brand m-4">{book.service}</h4>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,9 @@
 import React from 'react';
 
-const ServicesDetails = ({service}) => {
+const ServicesCard = ({ service }) => {
     return (
-         <div className='col-md-6  card-group p-4  text-center'>
+
+        <div className='col-md-6  card-group p-4  text-center'>
            <div className="card shadow-sm  justify-content-center">
         <div className='card-body '>
             <img  style={{marginTop:'10px',height:'180px',width:'180px',color:'info'}} src={service.pic} alt=""/>
@@ -15,7 +16,9 @@ const ServicesDetails = ({service}) => {
         </div>
         
       </div>
+
+        
     );
 };
 
-export default ServicesDetails;
+export default ServicesCard;

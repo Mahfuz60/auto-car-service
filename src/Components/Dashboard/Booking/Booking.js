@@ -1,17 +1,19 @@
-import React, { useContext, UseEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { UserContext } from '../../../App';
-import PaymentProcess from '../PaymentProcess/PaymentProcess';
+/* eslint-disable react-hooks/rules-of-hooks */
+import React, { useContext, useState } from 'react';
+import { userContext } from '../../../App';
 import Sidebar from '../Sidebar/Sidebar';
+import { useForm } from "react-hook-form";
+import ProcessPayment from '../ProcessPayment/ProcessPayment';
+
 
 const Booking = () => {
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const [loggedInUser, setLoggedInUser] = useContext(userContext);
     const [booking, setBooking] = useState({
         name: '',
         email: '',
         service: ''
     });
-
+    
     const { register, watch, formState: { errors } } = useForm();
     const onSubmit = data => console.log(data);
     console.log(watch("example"));
@@ -23,10 +25,12 @@ const Booking = () => {
         setBooking(newBooking);
     }
 
+    
+
 
     // handleSubmit
     const handleSubmit = (event) => {
-        UseEffect(() => {
+     
             fetch('http://localhost:5000/booking', {
                 method: 'POST',
                 headers: {
@@ -37,13 +41,17 @@ const Booking = () => {
                 .then(res => res.json())
                 .then(success => {
                     if (success) {
-                        // alert('Thanks for submitting the form. Our team will contact you shortly');
+                        
                         console.log(success);
                     }
                 })
+                event.preventDefault();
 
-        }, [])
-    }
+        }
+
+
+   
+
     return (
         <div className="row">
             <div className="col-md-2">
@@ -55,22 +63,26 @@ const Booking = () => {
                         <h4 style={{}} className="m-4">Booking</h4>
                     </div>
                     <div className="col-md-6">
-                        <h4 style={{}} className="text-warning m-4">{loggedInUser.displayName}</h4>
+                        <h4 style={{}} className="text-brand m-4">{loggedInUser.displayName}</h4>
                     </div>
                 </div>
-                <form onSubmit={handleSubmit(onSubmit)} style={{ width: '75%', margin: '0 auto' }} className="py-5 bg-light p-5">
-                    <input type="text" name="name" className="form-control" onBlur={handleBlur} defaultValue="" {...register("example")} />
+                <form onSubmit={handleSubmit} style={{ width: '75%', margin: '0 auto' }} className="py-5 bg-light p-5">
+                    <input type="text" placeholder="name" name="name" className="form-control" onBlur={handleBlur} defaultValue="" {...register("example")} />
                     <br /><br />
-                    <input type="email" name="email" className="form-control" onBlur={handleBlur}  {...register("exampleRequired", { required: true })} />
+                    <input type="email" placeholder="email" name="email" className="form-control" onBlur={handleBlur}  {...register("exampleRequired", { required: true })} />
                     <br /><br />
                     {errors.exampleRequired && <span>This field is required</span>}
-                    <input type="text" name="service" className="form-control" onBlur={handleBlur} defaultValue="" {...register("example")} />
+                    <input type="text" placeholder="service" name="service" className="form-control" onBlur={handleBlur} defaultValue="" {...register("example")} />
                     <br /><br />
                     <p className="text-muted">Pay With</p>
-                    <PaymentProcess />
+                    <ProcessPayment />
 
                 </form>
+
+               
             </div>
+
+           
         </div>
     );
 };

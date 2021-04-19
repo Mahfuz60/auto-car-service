@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { UserContext } from '../../../App';
+import { userContext } from '../../../App';
 import Sidebar from '../Sidebar/Sidebar';
 
 const Review = () => {
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const [loggedInUser, setLoggedInUser] = useContext(userContext);
     const [review, setReview] = useState({
         name: '',
+        position:'',
         company: '',
         description: '',
         image:'',
@@ -42,39 +43,42 @@ const Review = () => {
 
         event.preventDefault();
     }
+
+
     return (
         <div className="row">
-        <div className="col-md-2">
-            <Sidebar />
-        </div>
-        <div className="col-md-10 ">
-            <div className="row">
-                <div className="col-md-6">
-                    <h4 style={{}} className="m-4">Review</h4>
-                </div>
-                <div className="col-md-6 ">
-                    <h4 style={{}} className="text-warning m-4">{loggedInUser.displayName}</h4>
-                </div>
+            <div className="col-md-2">
+                <Sidebar />
             </div>
-            <div className="bg-light p-5" style={{ width: '75%', margin: '0 auto' }}>
-                <form action="" className=" " onSubmit={handleReviewSubmit}  >
-                    <input type="text" onBlur={handleChangeReview} className="form-control" name="name" placeholder="Your Name" required/>
-                    <br />
-                    <br />
-                    <input type="text" onBlur={handleChangeReview} className="form-control" name="company" placeholder="Company's Name" required/>
-                    <br />
-                    <br />
-                    <textarea onBlur={handleChangeReview} name="description" className="form-control" placeholder="Description" required></textarea>
-                    <br />
-                    <br />
-                    <input type="file" onBlur={handleChangeReview} name="image"  />
-                    <div className="text-center">
-                        <input type="submit" value="Submit" className="btn btn-warning" />
+            <div className="col-md-10 ">
+                <div className="row">
+                    <div className="col-md-6">
+                        <h4 style={{}} className="m-4">Review</h4>
                     </div>
-                </form>
+                    <div className="col-md-6 ">
+                        <h4  className="text-brand m-4">{loggedInUser.displayName}</h4>
+                    </div>
+                </div>
+                <div className="bg-light p-5" style={{ width: '75%', margin: '0 auto' }}>
+                    <form action="" className=" " onSubmit={handleReviewSubmit}  >
+                        <input type="text" onBlur={handleChangeReview} className="form-control" name="name" placeholder="Your Name" required/>
+                        <br />
+                        <input type="text" onBlur={handleChangeReview} className="form-control" name="name" placeholder="position" required/>
+                        <br />
+                        <input type="text" onBlur={handleChangeReview} className="form-control" name="company" placeholder="Company's Name" required/>
+                        <br />
+                        <br />
+                        <textarea onBlur={handleChangeReview} name="description" className="form-control" placeholder="Description" required></textarea>
+                        <br />
+                        <br />
+                        <input type="file" onBlur={handleChangeReview} name="image"  />
+                        <div className="text-center">
+                            <input type="submit" value="Submit" className="btn btn-brand" />
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
     );
 };
 

@@ -1,19 +1,24 @@
 import React from 'react';
-import Footer from '../../Footer/Footer';
+import Footer from '../../Share/Footer/Footer';
+import Navbar from '../../Share/Navbar/Navbar';
+import CompanyInfo from '../CompanyInfo/CompanyInfo';
+import CompleteServices from '../CompleteServices/CompleteServices';
 import Contact from '../Contact/Contact';
-import FeatureService from '../FeatureService/FeatureService';
-import Header from '../Header/Header';
+import HeaderMain from '../HeaderMain/HeaderMain';
 import Services from '../Services/Services';
-import Testimonials from '../Testimonials/Testimonials';
+import Testimonial from '../Testimonial/Testimonial';
+
 
 const Home = () => {
     return (
         <div>
-            <Header></Header>
+            <Navbar></Navbar>
+            <HeaderMain></HeaderMain>
+            <CompanyInfo></CompanyInfo>
             <Services></Services>
-            <FeatureService></FeatureService>
+            <CompleteServices></CompleteServices>
+            <Testimonial></Testimonial>
             <Contact></Contact>
-            <Testimonials></Testimonials>
             <Footer></Footer>
             
         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import pic2 from '../../../images/pic2.jpg';
-import './companyInfo.css'
+import './CompanyInfo.css'
 
 const CompanyInfo = () => {
     return (
